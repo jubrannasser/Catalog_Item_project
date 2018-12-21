@@ -1,0 +1,20 @@
+﻿{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <div  class="bg-gry">
+        <div style="margin: 0 auto;">
+            <div  class="details">
+                <h4>{{item.name}}</h4>
+                <p>{{item.description}}</p>
+                
+            </div>
+            <div style='padding: 15px 15px;'>   
+                <a style="width:auto; background-color: rgb(31, 189, 17);
+                color:rgb(255, 255, 255);" class="btn btn-primary" href="{{ url_for('editItem', item = item.name, item_id = item.id) }}">Edit</a> 
+                <a style="width:auto; background-color: rgb(31, 189, 17);
+                color:rgb(255, 255, 255);" class="btn btn-primary" href="{{ url_for('deleteItem', item = item.name, item_id = item.id) }}">delete</a> 
+            </div>
+        </div>
+           
+    </div>
+{% endblock %}

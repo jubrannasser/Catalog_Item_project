@@ -1,0 +1,53 @@
+﻿{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <div  class="bg-gry">
+        <div id="sidbar">
+                    
+            <div id='Categories'>
+                <h2>Categories</h2>
+                    <ul>
+                        {% for c in categories%}
+                        <li><a href="{{ url_for('showItems',category = c.name, category_id=c.id )}}"><h4>{{c.name}}</h4></a></li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+        
+        <div class="items">
+            <div >
+                <div class="text-center">
+                    <h2>Latest Items</h2>
+                    <br>
+                </div>
+            </div>
+            {% if 'username' in session %}
+            <div style="padding-left: 15px">   
+                <a style="width:auto; background-color: rgb(31, 189, 17);
+                color:rgb(255, 255, 255);" class="btn btn-primary" href="{{ url_for('addItem')}}"><h4>Add New Item</h4></a>      
+            </div>
+            <br>
+            {% endif%}
+            <div>
+                {% for i in items%}
+                <div class="item">
+                    <a href="{{ url_for('itemInfo',category = i.category.name, item=i.name, item_id=i.id)}}" class="link" >
+                    <div class="item-hover">
+                        <h3>details</h3>
+                    </div>
+                    {% if i.photo != None%}
+                    <img src="/static/img/{{i.photo}}" >
+                    {% else %}
+                    <img src="{{ url_for('static', filename='img/none.jpg') }}" >
+                    {% endif %}
+                    </a>
+                    <div class="item-caption">
+                        <h4>{{ i.name }} ({{i.category.name}})</h4>
+                    </div>
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+        
+    </div>
+        {% endblock %}

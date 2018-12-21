@@ -1,0 +1,48 @@
+﻿{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <div  class="bg-gry">
+          <div style="margin: 0 auto;">
+                <div  class="details">
+                    <h2>Edit Item</h2>
+                    <form action="{{ url_for('editItem', item = item.name, item_id = item.id)}}" enctype=multipart/form-data method="POST">
+                        <div>
+                            <label >Name:</label>
+                            <input type="text" class="form-control" style="width: 200px" name="name" value="{{ item.name }}" required>
+                        </div>
+                        <br>
+                        <div>
+                            <label >select pecture:</label>
+                            <input type="file" style="width: 200px" name="photo">
+                        </div>
+                        <br>
+                        <div>
+                            <label>description:</label>
+                            <textarea class="form-control" style="width: 400px" rows="5" name="description" >{{ item.description }}</textarea>
+                        </div>
+                        <br>
+                        <div>
+                            <label >Category:</label>
+                            <select class="form-control" style="width: 200px"  name="Category">
+                            {% for category in categories%}
+                            {% if item.category_id == category.id %}
+                            <option selected value='{{ category.id}}'>{{category.name}}</option>
+                            {% else %}
+                            <option value='{{ category.id}}'>{{category.name}}</option>
+                            {% endif%}
+                            {% endfor%}
+                            </select>
+                        </div>
+                        <br>
+                        <input type="submit" style="width: 100px;background-color: rgb(31, 189, 17);
+                        color: rgb(255, 255, 255);" class="btn" value="Save">
+                        <a style="width: 100px;background-color: rgb(31, 189, 17);
+                        color: rgb(255, 255, 255);" class="btn" href="{{url_for('showCategories')}}">cancel</a>
+                    </form>
+                    
+                </div>
+            </div>
+           
+        
+        </div>
+        {% endblock %}

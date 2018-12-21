@@ -1,0 +1,22 @@
+
+<div id="header">
+	<div id="inner_header">
+	  <div id="logo">
+		<h1><a href="{{url_for('showCategories')}}">CatalogApp</a></h1>
+	  </div>
+	  <div class="log right_side" >   
+		  <div style="min-width: 170px;">
+				{%if 'username' not in session %}
+			  <a href="{{url_for('login')}}">login</a>
+				{% else %}
+				<a href="{{url_for('logout')}}">logout</a>
+				{% endif %}
+		  </div>
+	  </div>
+	  <div class="log right_side">   
+		  <div class='active' ><a href="{{url_for('showCategories')}}">home</a></div>
+	  </div>
+	  
+	  <br />
+	</div>
+  </div>

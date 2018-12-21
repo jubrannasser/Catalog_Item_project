@@ -1,0 +1,26 @@
+﻿{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <div  class="bg-gry">
+          <div style="margin: 0 auto;">
+                <div  class="details">
+                    <h2>delete Item</h2>
+                    <form action="{{ url_for('deleteItem', item = item.name, item_id = item.id)}}" enctype=multipart/form-data method="POST">
+                        <h1> did yo need delete {{ item.name }} item</h1>
+                        <br>
+                        <p>The item and all its associated data (images, description)
+                            will be deleted. If you click OK, you will never
+                            be able to retrieve the item</p>
+                        <br>
+                        <input type="submit" style="width: 100px;background-color: rgb(31, 189, 17);
+                        color: rgb(255, 255, 255);" class="btn" value="ok">
+                        <a style="width: 100px;background-color: rgb(31, 189, 17);
+                        color: rgb(255, 255, 255);" class="btn" href="{{url_for('showCategories')}}">cancel</a>
+                    </form>
+                    
+                </div>
+            </div>
+           
+        
+        </div>
+        {% endblock %}
