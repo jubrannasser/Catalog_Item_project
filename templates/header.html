@@ -1,4 +1,4 @@
-
+<div>
 <div id="header">
 	<div id="inner_header">
 	  <div id="logo">
@@ -17,6 +17,18 @@
 		  <div class='active' ><a href="{{url_for('showCategories')}}">home</a></div>
 	  </div>
 	  
-	  <br />
+		<br />
+		
 	</div>
+	
   </div>
+	<div style='margin:0; text-align: center ; min-height:20px;background-color:rgb(31, 189, 17)'>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}	
+			{% for message in messages %}
+				  <div style="font: 2em sans-serif;"><strong> {{ message }} </strong></div> 
+			{% endfor %} 
+			{% endif %}
+			{% endwith %}
+		</div>
+	</div>

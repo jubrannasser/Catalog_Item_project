@@ -1,0 +1,58 @@
+﻿{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <script>
+        gapi.load('auth2', function() {
+            auth = gapi.auth2.init({
+            client_id: 'CLIENT_ID',
+            });
+        });
+    </script>
+    <div  class="bg-gry">
+        <div style="margin: 0 auto;">
+            <div  class="log_page">
+                <h2>SignIn to your account</h2>
+                <br>
+                <p>To login you must have an account at Google.
+                    If you do not have a Google account, create 
+                    an account on this link<a href="https://accounts.google.com/SignUp">
+                    Google Signup</a></p>
+                <br>
+                <p>Sign in with google service:</p>
+                <div  class="g-signin2" id="signinButton"></div>
+            </div>
+        </div>
+           
+    </div>
+    <script>
+        $('#signinButton').click(function(){    
+            auth.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback); 
+        });
+
+    </script>
+    <script>
+        function signInCallback(auth_result){
+    if (auth_result['code']) {
+        $('#signinButton').attr('style', 'display: none');
+        $.ajax({
+        type: 'POST',
+        url: '/login?state_token={{state_token}}',
+        processData: false,
+        data: auth_result['code'] ,
+        contentType: 'application/octet-stream; charset=utf-8',
+        success: function(result) {
+            
+          if (result == "error" ){
+           
+            window.location.href = "/login";   
+        } else if ( result == "ok"){
+            window.location.href = "/"; 
+        }  
+        }
+        
+    });
+} 
+    } 
+    
+    </script>
+{% endblock %}

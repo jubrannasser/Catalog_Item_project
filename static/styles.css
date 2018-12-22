@@ -9,12 +9,11 @@ body{
   margin: 0;
 }
 
-a{
-  outline:none; 
-  text-decoration:none;
-}
 /* header*/
-#header{color:#CCCCCC; background-color:#000000;}
+#header{
+  color:#CCCCCC;
+  background-color:#000000;
+}
 #header br{
     clear:both;
 }
@@ -40,16 +39,38 @@ a{
     text-transform:uppercase;
 }
 
-#inner_header h1 a{
+
+#inner_header h1 a {
     color:rgb(31, 189, 17); 
     background-color:#000000;
+    outline:none; 
+    text-decoration:none;
 }
 
-.right_side{float:right;}
-.left_side{float: left;}
-.log div{margin:0; padding:0;}
-.log div a { display:block; margin:0; padding:15px 20px; color:#e4e3e3; background-color:#333333; text-align: center;}
-.log a:hover,.log div.active a{color:#FFFFFF; background-color:rgb(31, 189, 17);}
+.right_side {
+  float:right;
+}
+.left_side {
+  float: left;
+}
+.log div {
+  margin:0; 
+  padding:0;
+}
+.log div a { 
+  display:block; 
+  margin:0; 
+  padding:15px 20px; 
+  color:#e4e3e3; 
+  background-color:#333333; 
+  text-align: center;
+}
+.log a:hover,.log div.active a{
+  color:#FFFFFF; 
+  background-color:rgb(31, 189, 17);
+  outline:none; 
+  text-decoration:none;
+}
 
 /* header*/
 
@@ -61,7 +82,6 @@ h5,
 h6 {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-family: "Montserrat";
   font-weight: 700;
 }
 h1{
@@ -87,7 +107,6 @@ h6{
   text-align: center;
 }
 
-
 .bg-gry {
   
   display: flex;
@@ -101,13 +120,11 @@ h6{
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  
   background-color: #eeeeee;
 }
 
 #sidbar {
   flex: 30%;
-  
   top: 0;
   left: 0;
   background-color: #eeeeee;
@@ -209,6 +226,20 @@ h6{
   padding-top: 0px;
   height: auto;
   min-height: 250px;
+  border: solid  rgb(31, 189, 17); 
+  border-radius: 20px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.log_page {
+  width: 550px;
+  background-color: white;
+  text-align:left;
+  padding: 25px;
+  padding-top: 0px;
+  height: auto;
+  min-height: 200px;
   border: solid  rgb(31, 189, 17); 
   border-radius: 20px;
   margin: 0 auto;
