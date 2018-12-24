@@ -226,7 +226,8 @@ def editItem(item):
     item = session.query(Item).filter_by(id=item_id).one()
     if request.method == 'POST':
         if session_login['user_id'] != item.user_id:
-            abort(400)
+            flash("you're not authorized to edit this item")
+            return redirect(url_for('showCategories'))
         item.name = request.form.get('name')
         item.description = request.form.get('description')
         item.category_id = request.form.get('Category')
@@ -284,18 +285,38 @@ def deleteItem(item):
     item = session.query(Item).filter_by(id=item_id).one()
     if request.method == 'POST':
         if session_login['user_id'] != item.user_id:
-            abort(400)
+            flash("you're not authorized to delete this item")
+            return redirect(url_for('showCategories'))
         session.delete(item)
         session.commit()
         return redirect(url_for('showCategories'))
     return render_template('itemdelete.html', item=item)
 
 
-# json endpoint
-@app.route('/catalog.json')
+# json endpoints
+@app.route('/catalog/json')
 def catalogJson():
     categories = session.query(Category).all()
     return jsonify(Category=[c.serialize for c in categories])
+
+
+@app.route('/catalog/<int:category_id>/json')
+def categoryJson(category_id):
+    try:
+        category = session.query(Category).filter_by(id=category_id).one()
+        return jsonify(Category=[category.serialize])
+    except:
+        return 'There is no category with this ID number'
+
+
+@app.route('/catalog/<int:category_id>/<int:item_id>/json')
+def itemJson(category_id, item_id):
+    try:
+        item = session.query(Item).filter_by(id=item_id,
+                                             category_id=category_id).one()
+        return jsonify(item=[item.serialize_withcategory])
+    except:
+        return 'There is no item with these ID numbers'
 
 
 if __name__ == '__main__':

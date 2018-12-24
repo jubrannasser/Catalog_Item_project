@@ -16,7 +16,7 @@ to running program:
    - You will then be able to get the client ID and client secret.
    - download the client secret as a JSON data file once you have created it and rename it ot `client_secrets.json`
 - copy `client_secrets.json` to 'catalogitem_prog' folder.
-- Find and Edit the **login.html** file and replace `CLIENT_ID` with your own.
+- Find and open the **login.html** file and replace `CLIENT_ID` with your own.
 - run program as following 
  
 ~~~
@@ -39,14 +39,17 @@ But Before you run this program, there are dependencies and resourse, so followi
  
 From your terminal, change directory to the vagrant subdirectory that located in FSND-Virtual-Machine directory, run the command `vagrant up`. This will cause Vagrant to download the Linux operating system and install it. after that done, you can run command `vagrant ssh` to log in VM.[4]
 
+## JSON API structure
+- `http://localhost:8000/catalog/json`:
+   This brings data of all categories and items.
+- `http://localhost:8000/catalog/category-id/json`:
+   This brings data of category with _category-id_ ID and its items.
+- `http://localhost:8000/catalog/category-id/item-id/json`:
+   This brings data for item with _item-id_ ID.
 
 ## Reference
-   - Thanks for Lujain AlGholaiqa, Udacity nanodegree session lead.
    - [1][2][3][4][5] Udacity.com lessons.
-   - Udacity classroom codes.
+   - Udacity classroom.
    - [How to Writing READMEs](https://classroom.udacity.com/courses/ud777) lesson, Udacity website.
    - [https://www.w3schools.com](https://www.w3schools.com)
-   - [https://stackoverflow.com](https://stackoverflow.com)
-   - free website template [https://www.free-css.com](https://www.free-css.com)
-   - [SQLAlchemy 1.3 Documentation](https://docs.sqlalchemy.org/en/latest/orm/query.html)
  

@@ -28,6 +28,7 @@ class Category(Base):
     __tablename__ = 'category'
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
+    item = relationship("Item", back_populates="category", cascade="delete")
 
     @property
     def serialize(self):
@@ -54,7 +55,7 @@ class Item(Base):
     description = Column(String(250))
     photo = Column(String(250))
     category_id = Column(Integer, ForeignKey('category.id'))
-    category = relationship(Category)
+    category = relationship("Category", back_populates="item")
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
@@ -64,9 +65,19 @@ class Item(Base):
             'id': self.id,
             'name': self.name,
             'description': self.description,
-            'photo': self.photo
+            'photo_name': self.photo,
         }
 
+    # return item info with its category
+    @property
+    def serialize_withcategory(self):
+        return{
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'photo_name': self.photo,
+            'category': self.category.name,
+        }
 engine = create_engine('sqlite:///categitems.db')
 
 Base.metadata.create_all(engine)
